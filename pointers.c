@@ -21,4 +21,38 @@ int main(){
   *cp += 2;
   *ldp -= 24;
   printf("\nint i = %d\nchar c = %c\nlong o = %ld\n", *ip, *cp, *ldp);
+
+  // 6-8
+  unsigned int ui = 2151686160; // 80402010: 2151686160; 16080402010: 1513980174352
+  int *uiip = &ui;
+  char *uicp = &ui;
+  printf("\nuiip: %p uiip points to %d", uiip, *uiip);
+  printf("\nuicp: %p uicp points to %c", uicp, *uicp);
+  printf("\nui: %u, %x\n", ui, ui);
+  
+
+  // 9
+  int b;
+  printf("hhx:\thhu:\thho:\n");
+  for (b = 0; b < 4; b ++){
+    printf("%hhx\t%hhu\t%hho\n", *(uicp+b), *(uicp+b), *(uicp+b));
+  }
+
+  // 10
+  for (b = 0; b < 4; b ++){
+    *(uicp+b) += 1;
+  }
+  printf("\nui: %u, %x\n", ui, ui);
+  for (b = 0; b < 4; b ++){
+    printf("%hhx\t%hhu\t%hho\n", *(uicp+b), *(uicp+b), *(uicp+b));
+  }
+
+  // 11
+  for (b = 0; b < 4; b ++){
+    *(uicp+b) += 16;
+  }
+  printf("\nui: %u, %x\n", ui, ui);
+  for (b = 0; b < 4; b ++){
+    printf("%hhx\t%hhu\t%hho\n", *(uicp+b), *(uicp+b), *(uicp+b));
+  }
 }
