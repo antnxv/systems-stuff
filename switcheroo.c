@@ -2,23 +2,41 @@
 #include <stdlib.h>
 #include <time.h>
 
-int readArr(int *a, int s){
-  int i;
-  printf("{");
-  for (i = 0; i < s; i ++){
-    printf((i == s-1)? "%d":"%d, ", a[i]);
-  }
-  printf("}\n");
-}
-
 int main(){
-  // 1-3
   int i;
-  int ray[10];
+
+  // 1
+  int size = 10;
+  int ray[size];
+
+  // 2
   ray[0] = 0;
   srand(time(NULL));
-  for (i = 1; i < sizeof(ray)/sizeof(ray[0]); i ++){
+  for (i = 1; i < size; i ++){
     ray[i] = rand()%1000;
   }
-  readArr(ray, sizeof(ray)/sizeof(ray[0]));
+  
+  //3
+  printf("{");
+  for (i = 0; i < size; i ++){
+    printf((i == size-1)? "%d":"%d, ", ray[i]);
+  }
+  printf("}\n");
+  
+  // 4
+  int rra[size];
+
+  // 5
+  int *ra = ray;
+  int *rr = rra;
+  
+  // 6
+  for (i = 0; i < size; i ++){
+    rr[i] = *(ra + size -i -1);
+  } //ra[size -(i+1)] ==^^^^^^
+  printf("{");
+  for (i = 0; i < size; i ++){
+    printf((i == size-1)? "%d":"%d, ", *(rr+i));
+  }
+  printf("}\n");
 }
