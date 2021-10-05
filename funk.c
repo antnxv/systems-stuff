@@ -20,20 +20,29 @@ double avg(int *ray, int size) {
 }
 
 int copy2(int *a, int *b, int size){
+  int i;
+  for (i = 0; i < size; i ++) {
+    b[i] = a[i];
+  }
   return 0;
 }
 
 int main(){
-  int ray[0] = {};
-  readray(ray, 0);
-  printf("^Avg: %0.2lf\n\n", avg(ray, 0));
-  
-  int rra[1] = {1};
-  readray(rra, 1);
-  printf("^Avg: %0.2lf\n\n", avg(rra, 1));
+  /* 
+  The following lightly tests all 3 functions:
+
+  int ray[10] = {10, 9, 7, 8, 6, 4, 3, 5, 1, 2};
+  readray(ray, 10);
+  printf("^Avg: %0.2lf\n\n", avg(ray, 10));
 	 
   int arr[10] = {82346342, 8923462, 12364, 286, 1235446, 45867645, 36423426, 457867, 2765347, 0};
   readray(arr, 10);
   printf("^Avg: %0.2lf\n\n", avg(arr, 10));
+
+  copy2(arr, ray, 10);
+  printf("After copy (should match above):\n");
+  readray(ray, 10);
+  printf("^Avg: %0.2lf\n\n", avg(ray, 10));
+  */  
   return 0;
 }
