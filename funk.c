@@ -29,7 +29,7 @@ int copy2(int *a, int *b, int size){
 
 int main(){
   /* 
-  The following lightly tests all 3 functions:
+  //The following lightly tests all 3 functions:
 
   int ray[10] = {10, 9, 7, 8, 6, 4, 3, 5, 1, 2};
   readray(ray, 10);
