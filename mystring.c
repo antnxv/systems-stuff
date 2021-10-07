@@ -53,15 +53,3 @@ char * mystrchr(char *s, char c) {
   }
   return s+i;
 }
-
-int main() {
-  printf("1. %c\n", *mystrchr("hello", 'e'));
-  printf("Next 3 are null: %c\n", '\0');
-  printf("2. %c\n", *mystrchr("hello", 'a'));
-  printf("3. %c\n", *mystrchr("", 's'));
-  printf("4. %c\n", *mystrchr("gx", '\0'));
-  char s[10] = "hello";
-  printf("%p = ", mystrchr(s, 'o'));
-  mystrncat(s, "o", 1);
-  printf("%p\n", mystrchr(s, 'o'));
-}
