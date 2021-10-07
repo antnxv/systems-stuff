@@ -22,14 +22,13 @@ char * mystrcpy(char *dest, char *source) {
 }
 
 char * mystrncpy(char *dest, char *source, int n) {
-  int i;
-  for (i = 0; i < n; i ++) {
-    if (source[i] == '\0')
-      break;
+  int i = 0;
+  while (source[i] && i < n) {
     dest[i] = source[i];
+    i ++;
   }
   for (; i < n; i ++) {
-    dest[i] = '\n';
+    dest[i] = '\0';
   }
   return dest;
 }
@@ -47,9 +46,10 @@ char * mystrcat(char *dest, char *source) {
 
 char * mystrncat(char *dest, char *source, int n) {
   int size = mystrlen(dest);
-  int i;
-  for (i = 0; i < n && source[i] != '\0'; i++) {
+  int i = 0;
+  while (source[i] != '\0' && i < n) {
     dest[size+i] = source[i];
+    i ++;
   }
   dest[size+i] = '\0';
   return dest;
@@ -57,11 +57,8 @@ char * mystrncat(char *dest, char *source, int n) {
 
 int mystrcmp(char *s1, char *s2) {
   int i;
-  int n = (mystrlen(s1) < mystrlen(s2))? mystrlen(s1) : mystrlen(s2);
-  for (i = 0; i < n; i ++) {
-    if (s1[i] != s2[i])
-      return s1[i] - s2[i];
-  }
+  int n = (strlen(s1) < strlen(s2))? mystrlen(s1) : mystrlen(s2);
+  for (i = 0; s1[i] == s2[i] && i < n; i ++);
   return s1[i] - s2[i];
 }
 
