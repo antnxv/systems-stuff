@@ -8,6 +8,7 @@ mystring.o: mystring.c mystring.h
 	gcc -c mystring.c
 
 run:
+	make
 	./mystring
 
 clean:
