@@ -24,9 +24,26 @@ char * mystrncpy(char *dest, char *source, int n) {
   return dest;
 }
 
+char * mystrncat(char *dest, char *source, int n) {
+  int size = mystrlen(dest);
+  int i; // I didn't know conditionals like this could be used in for statments!
+  for (i = 0; i < n && source[i] != '\0'; i++) {
+    dest[size+i] = source[i];
+  }
+  dest[size+i] = '\0';
+  return dest;
+}
+
+int mystrcmp(char *s1, char *s2) {
+  int i; // the following is probably inefficient but it's an interesting way to do it, i guess
+  int n = (mystrlen(s1) < mystrlen(s2))? mystrlen(s1) : mystrlen(s2);
+  for (i = 0; i < n; i ++) {
+    if (s1[i] != s2[i])
+      return s1[i] - s2[i];
+  }
+  return 0;
+}
+
 int main() {
-  char s1[10] = "greetings";
-  char s2[10] = "drasti";
-  printf("%s\n%s\n", strncpy(s1, s2, 3), mystrncpy(s1, s2, 3));
-  printf("%s\n%s\n", strncpy(s1, s2, 8), mystrncpy(s1, s2, 8));
+  // I did a lot of testing that was extremely and shamefully ugly
 }
