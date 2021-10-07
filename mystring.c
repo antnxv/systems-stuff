@@ -11,6 +11,17 @@ int mystrlen(char *s) {
   return n;
 }
 
+char * mystrcpy(char *dest, char *source) {
+  int i;
+  int n = mystrlen(source);
+  for (i = 0; i < n; i ++) {
+    dest[i] = source[i];
+    if (source[i] == '\0')
+      break;
+  }
+  return dest;
+}
+
 char * mystrncpy(char *dest, char *source, int n) {
   int i;
   for (i = 0; i < n; i ++) {
@@ -21,6 +32,17 @@ char * mystrncpy(char *dest, char *source, int n) {
   for (; i < n; i ++) {
     dest[i] = '\n';
   }
+  return dest;
+}
+
+char * mystrcat(char *dest, char *source) {
+  int size = mystrlen(dest);
+  int i = 0;
+  while (source[i] != '\0') {
+    dest[size+i] = source[i];
+    i ++;
+  }
+  dest[size+i] = '\0';
   return dest;
 }
 
