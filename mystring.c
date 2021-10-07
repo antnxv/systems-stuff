@@ -70,3 +70,19 @@ char * mystrchr(char *s, char c) {
   }
   return s+i;
 }
+
+char * mystrstr(char *s1, char *s2) {
+  int len1 = mystrlen(s1);
+  int len2 = mystrlen(s2);
+  int i;
+  int j;
+  for (i = 0; i < len1-len2; i ++) {
+    for (j = 0; j < len2; j ++) {
+      if (s1[i+j] != s2[j])
+	break;
+    }
+    if (j == len2 && len2 > 0)
+      return s1+i;
+  }
+  return (char *)'\0';
+}
