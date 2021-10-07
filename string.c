@@ -26,7 +26,7 @@ char * mystrncpy(char *dest, char *source, int n) {
 
 char * mystrncat(char *dest, char *source, int n) {
   int size = mystrlen(dest);
-  int i; // I didn't know conditionals like this could be used in for statments!
+  int i;
   for (i = 0; i < n && source[i] != '\0'; i++) {
     dest[size+i] = source[i];
   }
@@ -35,7 +35,7 @@ char * mystrncat(char *dest, char *source, int n) {
 }
 
 int mystrcmp(char *s1, char *s2) {
-  int i; // the following is probably inefficient but it's an interesting way to do it, i guess
+  int i;
   int n = (mystrlen(s1) < mystrlen(s2))? mystrlen(s1) : mystrlen(s2);
   for (i = 0; i < n; i ++) {
     if (s1[i] != s2[i])
@@ -44,6 +44,24 @@ int mystrcmp(char *s1, char *s2) {
   return 0;
 }
 
+char * mystrchr(char *s, char c) {
+  int i = 0;
+  while (s[i]){
+    if (s[i] == c)
+      break;
+    i ++;
+  }
+  return s+i;
+}
+
 int main() {
-  // I did a lot of testing that was extremely and shamefully ugly
+  printf("1. %c\n", *mystrchr("hello", 'e'));
+  printf("Next 3 are null: %c\n", '\0');
+  printf("2. %c\n", *mystrchr("hello", 'a'));
+  printf("3. %c\n", *mystrchr("", 's'));
+  printf("4. %c\n", *mystrchr("gx", '\0'));
+  char s[10] = "hello";
+  printf("%p = ", mystrchr(s, 'o'));
+  mystrncat(s, "o", 1);
+  printf("%p\n", mystrchr(s, 'o'));
 }
