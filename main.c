@@ -10,6 +10,9 @@ int main(){
   jenny = swap_meau(jenny, 'i');
   print_meau(jenny);
   
+  jenny = swap_meau(jenny, 'i');
+  print_meau(jenny);
+  
   free(jenny);
 
 
