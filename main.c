@@ -7,10 +7,10 @@ int main(){
   
   jenny = make_meau("jenny", rand()%200, 'c'+(rand()%2)*6);
 
-  jenny = swap_meau(jenny, 'i');
+  jenny = swap_meau(jenny, (jenny->u == 'c')? 'i' : 'c');
   print_meau(jenny);
   
-  jenny = swap_meau(jenny, 'i');
+  jenny = swap_meau(jenny, (jenny->u == 'c')? 'i' : 'c');
   print_meau(jenny);
   
   free(jenny);
