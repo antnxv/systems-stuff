@@ -6,5 +6,4 @@ run:
 	./list
 
 clean:
-	rm list.o
 	rm list
