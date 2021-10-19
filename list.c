@@ -1,7 +1,21 @@
 #include "list.h"
 
 void print_list(struct node *m){
-  printf("%s: %f %s tall\n", m->name, m->tall, (m->unit == 'c')? "cm" : "in");
+  while (m){
+    printf("%s: %f %s tall\n", m->name, m->tall, (m->unit == 'c')? "cm" : "in");
+    m = m->next;
+  }
+}
+
+// combination of print_list and swap_unit for demonstrative purposes
+void print_swap_list(struct node *m){
+  while (m){
+    printf("%s: %f %s tall\n", m->name, m->tall, (m->unit == 'c')? "cm" : "in");
+    swap_unit(m, (m->unit == 'c')? 'i' : 'c');
+    printf("%s: %f %s tall\n\n", m->name, m->tall, (m->unit == 'c')? "cm" : "in");
+    swap_unit(m, (m->unit == 'c')? 'i' : 'c');
+    m = m->next;
+  }
 }
 
 struct node *make_node(char *name, float tall, char unit){
@@ -19,6 +33,24 @@ struct node *insert_front(struct node *m1, char *name, float tall, char unit){
   struct node *m2 = make_node(name, tall, unit);
   m2->next = m1;
   return m2;
+}
+
+struct node *remove_node(struct node *m1, int data){
+  struct node *prev = 0;
+  struct node *curr = m1;
+  while (curr->tall != data && curr){
+    prev = curr;
+    curr = curr->next;
+  }
+  if (curr){
+    if (prev){
+      prev->next = curr->next;
+    }else{
+      m1 = curr->next;
+    }
+    free(curr);
+  }
+  return m1;
 }
 
 struct node *free_list(struct node *m1){
