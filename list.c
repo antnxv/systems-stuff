@@ -38,7 +38,7 @@ struct node *insert_front(struct node *m1, char *name, float tall, char unit){
 struct node *remove_node(struct node *m1, int data){
   struct node *prev = 0;
   struct node *curr = m1;
-  while (curr->tall != data && curr){
+  while (curr && (curr->tall != data)){
     prev = curr;
     curr = curr->next;
   }
@@ -46,7 +46,7 @@ struct node *remove_node(struct node *m1, int data){
     if (prev){
       prev->next = curr->next;
     }else{
-      m1 = curr->next;
+      m1 = m1->next;
     }
     free(curr);
   }
