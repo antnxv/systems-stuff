@@ -9,11 +9,12 @@ struct song{
   struct song *next;
 };
 
+struct song *make_song(char *name, char *artist);
 
 int compare(struct song *song1, struct song *song2);
-struct song *insert(struct song *list, struct song *song);
+struct song *insert(struct song *list, char *name, char *artist);
 
-struct song *insertf(struct song *list, struct song *song);
+struct song *insertf(struct song *list, char *name, char *artist);
 
 void print_list(struct song *list);
 
