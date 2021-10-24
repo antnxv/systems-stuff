@@ -23,7 +23,7 @@ int compare(struct song *song1, struct song *song2){
   
   for (i = 0; i < m; i++){
     if (tolower(song1->artist[i]) < tolower(song2->artist[i]))
-      return 0;
+      return -1;
     else if (tolower(song1->artist[i]) > tolower(song2->artist[i]))
       return 1;
   }
@@ -35,18 +35,18 @@ int compare(struct song *song1, struct song *song2){
   
   for (i = 0; i < m; i++)
     if (tolower(song1->name[i]) < tolower(song2->name[i]))
-      return 0;
+      return -1;
     else if (tolower(song1->name[i]) > tolower(song2->name[i]))
       return 1;
   
-  return 1;
+  return 0;
 }
 
 struct song *insert(struct song *list, char *name, char *artist){
   struct song *song = make_song(name, artist);
   struct song *prev = 0;
   struct song *curr = list;
-  while (curr && compare(song, curr)){
+  while (curr && compare(song, curr) > -1){
     prev = curr;
     curr = curr->next;
   }
@@ -73,17 +73,14 @@ void print_list(struct song *list){
 }
 
 struct song *search_song(struct song *list, char *name, char *artist){
-  struct song *curr;
-  while (curr && !(strcmp(curr->name, name) && strcmp(curr->artist, artist)))
-    curr = curr->next;
-  return curr;
+  while (list && (strcmp(list->name, name) || strcmp(list->artist, artist)))
+    list = list->next;return list;
 }
 
 struct song *search_artist(struct song *list, char *artist){
-  struct song *curr = list;
-  while (curr && !(strcmp(curr->artist, artist)))
-    curr = curr->next;
-  return curr;
+  while (list && strcmp(list->artist, artist))
+    list = list->next;
+  return list;
 }
 
 struct song *random_song(struct song *list){
