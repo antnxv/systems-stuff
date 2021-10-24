@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include <time.h>
 
 struct song{
@@ -23,6 +24,8 @@ void print_list(struct song *list);
 struct song *search_song(struct song *list, char *name, char *artist);
 
 struct song *search_artist(struct song *list, char *artist);
+
+int list_len(struct song *list);
 
 struct song *random_song(struct song *list);
 
