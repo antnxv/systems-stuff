@@ -1,25 +1,23 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <time.h>
 #include "list.h"
 
 struct song **make_library();
 
-struct song **add_song(struct song *song);
+int lib_index(char *artist);
 
-struct song *search_songl(char *name, char *artist);
+struct song **insertl(struct song **lib, char *name, char *artist);
 
-struct song *search_artistl(char *artist);
+struct song *search_songl(struct song **lib, char *name, char *artist);
 
-void print_letter(struct song **song);
+struct song *search_artistl(struct song **lib, char *artist);
 
-void print_artist(struct song **song);
+void print_letter(struct song **lib, char letter);
 
-void print_library(struct song **song);
+void print_artist(struct song **lib, char *artist);
 
-void print_shuffle(struct song **song);
+void print_library(struct song **lib);
 
-struct song **remove_songl(char *name, char *artist);
+void print_shuffle(struct song **lib);
 
-struct song **free_library(struct song **song);
+struct song **remove_songl(struct song **lib, char *name, char *artist);
+
+struct song **free_library(struct song **lib);
