@@ -65,8 +65,10 @@ void print_song(struct song *song){
 }
 
 void print_list(struct song *list){
-  if (!list)
+  if (!list){
+    printf("Empty list\n");
     return;
+  }
   printf("{\n");
   while (list){
     print_song(list);
@@ -88,8 +90,9 @@ struct song *search_artist(struct song *list, char *artist){
 }
 
 int list_len(struct song *list){
-  int i;
-  for (i = 0; list; i ++){
+  int i = 0;
+  while (list){
+    i ++;
     list = list->next;
   }
   return i;
