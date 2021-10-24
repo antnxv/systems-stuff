@@ -16,6 +16,8 @@ struct song *insert(struct song *list, char *name, char *artist);
 
 struct song *insertf(struct song *list, char *name, char *artist);
 
+void print_song(struct song *song);
+
 void print_list(struct song *list);
 
 struct song *search_song(struct song *list, char *name, char *artist);
