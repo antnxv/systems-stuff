@@ -20,16 +20,21 @@ int main(){
   list = insertf(list, "Testing", "Kzzz");
 
   print_list(list);
-
+  printf("\n");
+  
   struct song *found;
+  
+  found = search_song(list, "Not", "Kino");
+  printf("%p\t%s = %s\n", found, found->name, "0");
+  
   found = search_song(list, "My Friends", "Kino");
-  printf("%s = %s\n", found->name, "My Friends");
+  printf("%p\t%s = %s\n", found, found->name, "My Friends");
 
   found = search_artist(list, "Kino");
-  printf("%s = %s\n", found->name, "Blood Type");
+  printf("%p\t%s = %s\n", found, found->name, "Blood Type");
   
   found = search_artist(list, "Kyrgiz");
-  printf("%s = %s\n", found->name, "Uzbekistan"); 
+  printf("%p\t%s = %s\n", found, found->name, "Uzbekistan"); 
   
   while (search_artist(list, "Kino"))
     remove_song(list, search_artist(list, "Kino")->name, "Kino");
