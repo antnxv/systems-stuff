@@ -1,16 +1,19 @@
-all: main.o list.o
-	gcc -o test main.o list.o
+all: main.o list.o librayray.o
+	gcc -o playlist main.o list.o librayray.o
 
-main.o: main.c list.h
+main.o: main.c list.h librayray.h
 	gcc -c main.c
 
 list.o: list.c list.h
 	gcc -c list.c
 
+librayray.o: librayray.c librayray.h
+	gcc -c librayray.c
+
 run:
 	make
-	./test
+	./playlist
 
 clean:
-	rm test
+	rm playlist
 	rm *.o
