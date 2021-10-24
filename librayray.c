@@ -45,25 +45,36 @@ void print_artist(struct song **lib, char *artist){
 
 void print_library(struct song **lib){
   int i;
-  for (i = 0; i < 27; i ++)
-    print_list(lib[i]);
+  printf("{\n");
+  struct song *curr;
+  for (i = 0; i < 27; i ++){
+    curr = lib[i];
+    while (curr){
+      print_song(curr);
+      curr = curr->next;
+    }
+  }
+  printf("}\n");
 }
 
 void print_shuffle(struct song **lib){
   int n;
-  for (int n = 0; n < 7; n ++){
-    int i, j, m = 0;
-    for (; i < 27; i ++){
+  for (n = 0; n < 7; n ++){
+    int i;
+    int j, m = 0;
+    for (i = 0; i < 27; i ++){
       m += list_len(lib[i]);
     }
     m = rand() % m;
+    i = 0;
     struct song *curr = lib[0];
-    for (j = 0; j < m; j ++){
-      if (curr = 0){
-	i ++;
-	curr = lib[i];
-      }else{
+    while (m > 0 || !curr){
+      if (curr){
 	curr = curr->next;
+	m--;
+      }else{
+	i ++;
+	curr = lib[i];	
       }
     }
     print_song(curr);
