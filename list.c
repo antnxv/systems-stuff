@@ -1,4 +1,5 @@
 #include "list.h"
+#include <ctype.h>
 
 //  char name[100];
 //  char artist[100];
@@ -13,28 +14,32 @@ struct song *make_song(char *name, char *artist){
 }
 
 int compare(struct song *song1, struct song *song2){
-  char str1[199];
-  char str2[199];
-  int i, j = 0;
+  int i, m;
 
-  for (i = 0; !song1->artist[i]; i++){
-    str1[i] = tolower(song1->artist[i]);
+  if (strlen(song1->artist) < strlen(song2->artist))
+    m = strlen(song1->artist)+1;
+  else
+     m = strlen(song2->artist)+1;
+  
+  for (i = 0; i < m; i++){
+    if (tolower(song1->artist[i]) < tolower(song2->artist[i]))
+      return 0;
+    else if (tolower(song1->artist[i]) > tolower(song2->artist[i]))
+      return 1;
   }
-  for (j = 0; !song2->artist[i]; j++){
-    str2[j] = tolower(song2->artist[j]);
-  }
-
-  if (strcmp(str1, str2))
-    return strcmp(str1, str2) > 1;
-
-  for (; !song1->name[i]; i++){
-    str1[i] = tolower(song1->name[i]);
-  }
-  for (; !song2->name[j]; j++){
-    str2[j] = tolower(song2->name[j]);
-  }
-
-  return strcmp(str1, str2) > 0;
+  
+  if (strlen(song1->name) < strlen(song2->name))
+    m = strlen(song1->name)+1;
+  else
+    m = strlen(song2->name)+1;
+  
+  for (i = 0; i < m; i++)
+    if (tolower(song1->name[i]) < tolower(song2->name[i]))
+      return 0;
+    else if (tolower(song1->name[i]) > tolower(song2->name[i]))
+      return 1;
+  
+  return 1;
 }
 
 struct song *insert(struct song *list, char *name, char *artist){
@@ -55,19 +60,19 @@ struct song *insert(struct song *list, char *name, char *artist){
 }
 
 struct song *insertf(struct song *list, char *name, char *artist){
-  struct node *front = make_song(name, artist, next);
+  struct song *front = make_song(name, artist);
   front->next = list;
   return front;
 }
 
 void print_list(struct song *list){
   while (list){
-    printf("%s - %s\n", m->artist, m->name);
+    printf("%s - %s\n", list->artist, list->name);
     list = list->next;
   }
 }
 
-struct song *search(struct song *list, char *name, char *artist){
+struct song *search_song(struct song *list, char *name, char *artist){
   struct song *curr;
   while (curr && !(strcmp(curr->name, name) && strcmp(curr->artist, artist)))
     curr = curr->next;
@@ -81,14 +86,14 @@ struct song *search_artist(struct song *list, char *artist){
   return curr;
 }
 
-struct song *random(struct song *list){
+struct song *random_song(struct song *list){
   struct song *curr; // will modify
   return curr;
 }
 
-struct song *remove(struct song *list, char *name, char *artist){
-  struct node *prev = 0;
-  struct node *curr = list;
+struct song *remove_song(struct song *list, char *name, char *artist){
+  struct song *prev = 0;
+  struct song *curr = list;
   while (curr && !(strcmp(curr->name, name) && strcmp(curr->artist, artist))){
     prev = curr;
     curr = curr->next;
@@ -105,7 +110,7 @@ struct song *remove(struct song *list, char *name, char *artist){
 }
 
 struct song *free_list(struct song *list){
-  struct node *next;
+  struct song *next;
   while (list){
     next = list->next;
     free(list);
