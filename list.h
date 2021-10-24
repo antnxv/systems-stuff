@@ -18,12 +18,12 @@ struct song *insertf(struct song *list, char *name, char *artist);
 
 void print_list(struct song *list);
 
-struct song *search(struct song *list, char *name, char *artist);
+struct song *search_song(struct song *list, char *name, char *artist);
 
 struct song *search_artist(struct song *list, char *artist);
 
-struct song *random(struct song *list);
+struct song *random_song(struct song *list);
 
-struct song *remove(struct song *list, char *name, char *artist);
+struct song *remove_song(struct song *list, char *name, char *artist);
 
 struct song *free_list(struct song *list);
