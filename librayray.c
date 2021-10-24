@@ -1,34 +1,84 @@
 #include "librayray.h"
 
-srand(time(0));
 
 struct song **make_library(){
-  
+  srand(time(0));
+  struct song **lib = malloc(27 * sizeof(struct song *));
+  int i;
+  for (i = 0; i < 27; i ++){
+    lib[i] = 0;
+  }
+  return lib;
 }
 
-struct song **add_song(struct song *song){
+int lib_index(char *artist){
+  if (tolower(artist[0]) == toupper(artist[0]))
+    return 26;
+  return toupper(artist[0])-65;
 }
 
-struct song *search_songl(char *name, char *artist){
+struct song **insertl(struct song **lib, char *name, char *artist){
+  lib[lib_index(artist)] = insert(lib[lib_index(artist)], name, artist);
+  return lib;
 }
 
-struct song *search_artistl(char *artist){
+struct song *search_songl(struct song **lib, char *name, char *artist){
+  return search_song(lib[lib_index(artist)], name, artist);
 }
 
-void print_letter(struct song **song){
+struct song *search_artistl(struct song **lib, char *artist){
+  return search_artist(lib[lib_index(artist)], artist);
 }
 
-void print_artist(struct song **song){
+void print_letter(struct song **lib, char letter){
+  print_list(lib[lib_index(&letter)]);
 }
 
-void print_library(struct song **song){
+void print_artist(struct song **lib, char *artist){
+  struct song *list = lib[lib_index(artist)];
+  while (list){
+    if (!strcmp(list->artist, artist))
+      print_song(list);
+    list = list->next;
+  }
 }
 
-void print_shuffle(struct song **song){
+void print_library(struct song **lib){
+  int i;
+  for (i = 0; i < 27; i ++)
+    print_list(lib[i]);
 }
 
-struct song **remove_songl(char *name, char *artist){
+void print_shuffle(struct song **lib){
+  int n;
+  for (int n = 0; n < 7; n ++){
+    int i, j, m = 0;
+    for (; i < 27; i ++){
+      m += list_len(lib[i]);
+    }
+    m = rand() % m;
+    struct song *curr = lib[0];
+    for (j = 0; j < m; j ++){
+      if (curr = 0){
+	i ++;
+	curr = lib[i];
+      }else{
+	curr = curr->next;
+      }
+    }
+    print_song(curr);
+  }
 }
 
-struct song **free_library(struct song **song){
+struct song **remove_songl(struct song **lib, char *name, char *artist){
+  lib[lib_index(artist)] = remove_song(lib[lib_index(artist)], name, artist);
+  return lib;
+}
+
+struct song **free_library(struct song **lib){
+  int i;
+  for (i = 0; i < 27; i ++){
+    lib[i] = free_list(lib[i]);
+  }
+  return lib;
 }
