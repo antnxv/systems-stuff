@@ -1,5 +1,4 @@
 #include "list.h"
-#include <ctype.h>
 
 struct song *make_song(char *name, char *artist){
   struct song *song = malloc(sizeof(struct song));
@@ -66,7 +65,9 @@ void print_song(struct song *song){
 }
 
 void print_list(struct song *list){
-  (list)? printf("{\n") : printf("{");
+  if (!list)
+    return;
+  printf("{\n");
   while (list){
     print_song(list);
     list = list->next;
@@ -86,13 +87,16 @@ struct song *search_artist(struct song *list, char *artist){
   return list;
 }
 
-struct song *random_song(struct song *list){
-  int m;
-  struct song *curr = list;
-  for (m = 0; curr; m ++){
-    curr = curr->next;
+int list_len(struct song *list){
+  int i;
+  for (i = 0; list; i ++){
+    list = list->next;
   }
-  m = rand() % m;
+  return i;
+}
+
+struct song *random_song(struct song *list){
+  int m = rand() % list_len(list);
   for (;m > 0;m --)
     list = list->next;
   return list;
