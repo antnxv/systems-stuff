@@ -8,7 +8,7 @@
 
 int generand(int b){
   int *n;
-  int fd = open("/dev/random", O_RDONLY);
+  int fd = open("/dev/urandom", O_RDONLY);
 
   if (fd < 0){
     printf("\t%d:\n%s\n", errno, strerror(errno));
@@ -26,7 +26,6 @@ int generand(int b){
 int main(){
   int i;
   int nums[SIZE];
-
   printf("\nRandom Array:\n{\n");
   for (i = 0; i < SIZE; i ++){
     nums[i] = generand(sizeof(int));
@@ -34,6 +33,42 @@ int main(){
   }
   printf("}\n");
 
-  return 0;
   
+  printf("\nCreating new file...\n");
+  int fd1 = open("rayndom.txt", O_WRONLY | O_CREAT, 666);
+  if (fd1 < 0){
+    printf("\tERROR: %d: %s\n", errno, strerror(errno));
+    return errno;
+  }else{
+    printf("\tSuccess! rayndom.txt exists!\n");
+  }
+
+  
+  printf("\nWriting to file...\n");
+  int q = write(fd1, nums, SIZE*sizeof(int));
+  if (q < 0){
+    printf("\tERROR: %d: %s\n", errno, strerror(errno));
+    return errno;
+  }else{
+    printf("\tSuccess! Wrote %d bytes!\n", q);
+  }
+
+  
+  printf("\nReading from file...\n");
+  int noms[SIZE] = {}; // 0s for debugging purposes
+  int fd2 = open("rayndom.txt", O_RDONLY);
+  q = read(fd2, noms, sizeof(noms));
+  if (q < 0){
+    printf("\t%d:\n%s\n", errno, strerror(errno));
+    return errno;
+  }else{
+    printf("\tSuccess! Read %d bytes!\n", q);
+  }
+
+  printf("\nDuplicate Array:\n{\n");
+  for (i = 0; i < SIZE; i ++)
+    printf("\t%d\n", noms[i]);
+  printf("}\n");
+  
+  return 0;
 }
