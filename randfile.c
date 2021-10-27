@@ -35,7 +35,7 @@ int main(){
 
   
   printf("\nCreating new file...\n");
-  int fd1 = open("rayndom.txt", O_WRONLY | O_CREAT, 666);
+  int fd1 = open("rayndom.txt", O_CREAT | O_WRONLY | O_TRUNC, 0666);
   if (fd1 < 0){
     printf("\tERROR: %d: %s\n", errno, strerror(errno));
     return errno;
@@ -69,6 +69,16 @@ int main(){
   for (i = 0; i < SIZE; i ++)
     printf("\t%d\n", noms[i]);
   printf("}\n");
+
+
+  // comparison for convenience:
+  for (i = 0; i < SIZE; i ++){
+    if (nums[i] != noms[i]){
+      printf("\nERROR! Arrays do not match at %d!\t%d != %d\n\n", i, nums[i], noms[i]);
+      return -1;
+    }
+  }
+  printf("\nSuccess! Arrays match!\n\n");
   
   return 0;
 }
