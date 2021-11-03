@@ -6,3 +6,11 @@ main.o: main.c euler.h
 
 euler.o: euler.c euler.h
 	gcc -c euler.c
+
+run:
+	make
+	./euler
+
+clean:
+	rm euler
+	rm *.o
