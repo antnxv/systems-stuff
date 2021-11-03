@@ -27,14 +27,23 @@ int copy2(int *a, int *b, int size){
   return 0;
 }
 
-int main(){
-  /* 
+int main(){ 
   //The following lightly tests all 3 functions:
-
+  int r[0];
+  printf("Empty array\n");
+  readray(r, 0);
+  printf("^Avg: %0.2lf\n\n", avg(r, 0));
+  
   int ray[10] = {10, 9, 7, 8, 6, 4, 3, 5, 1, 2};
   readray(ray, 10);
   printf("^Avg: %0.2lf\n\n", avg(ray, 10));
-	 
+
+  int a[0];
+  printf("Copying from empty to empty\n");
+  copy2(r, a, 0);
+  readray(a, 0);
+  printf("^Avg: %0.2lf\n\n", avg(a, 0));
+  
   int arr[10] = {82346342, 8923462, 12364, 286, 1235446, 45867645, 36423426, 457867, 2765347, 0};
   readray(arr, 10);
   printf("^Avg: %0.2lf\n\n", avg(arr, 10));
@@ -43,6 +52,6 @@ int main(){
   printf("After copy (should match above):\n");
   readray(ray, 10);
   printf("^Avg: %0.2lf\n\n", avg(ray, 10));
-  */  
+    
   return 0;
 }
