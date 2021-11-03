@@ -13,29 +13,31 @@ int multi35(){ // Problem 1
 }
 
 /*
- * m = 10: returns 2520;
+ * m = 10: returns 2520
  * m = 20: returns 232792560
- * It's a bit slow, but the only types of
- * optimisation I can think of require
- * arrays and I'm too scared to delve into
- * those for now.
- */
-int allFactors(){ // Problem 5
-  int i;
+*/
+long allFactors(){ // Problem 5
+  int i, j;
   int m = 20;
-  int n = 1;
-  int b = 0;
-  while (!b){
-    for (i = 1; i <= m; i++){
-      if (n%i != 0){
-	n++;
-	b--;
-	break;
+  long n1 = 1;
+  long n2 = 1;
+  int f = 0;
+  for (i = 1; i <= m; i++){
+    j = i;
+    n2 = n1;
+    for (f = 2; j > 1; f ++){
+      if (j % f == 0){
+	if (n2 % f != 0){
+	  n1 *= f;
+	  n2 *= f;
+	}
+	n2 /= f;
+	j /= f;
+	f--;
       }
     }
-    b++;
   }
-  return n;
+  return n1;
 }
 
 int sumSquareDiff(){ // Problem 6
