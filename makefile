@@ -3,7 +3,7 @@ all: dirinfo.c
 
 run:
 	gcc -o dirinfo dirinfo.c
-	./dirinfo
+	./dirinfo .
 
 clean:
 	rm dirinfo
