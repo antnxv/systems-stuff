@@ -3,3 +3,4 @@ all: cstructrw.c
 
 clean:
 	rm structrw
+	rm nyc_pop.data
