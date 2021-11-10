@@ -7,4 +7,4 @@ run:
 
 clean:
 	rm sig_tests
-	rm exitlog.data
+	rm exitlog.txt
