@@ -7,7 +7,7 @@ int cre(int shmd, int semd, int file){
   us.val = 1;
   semctl(semd, 0, SETVAL, us);
 
-  file = open(LOG, O_WRONLY | O_TRUNC, 0644);
+  file = open(LOG, O_CREAT | O_WRONLY | O_TRUNC, 0644);
   close(file);
   return 0;
 }
@@ -25,7 +25,7 @@ int rem(int shmd, int semd, int file){
   read(file, log_txt, st.st_size);
   close(file);
   
-  printf("Final Result:\n'%s'\n", log_txt);
+  printf("Final Result:\n{\n%s}\n", log_txt);
   free(log_txt);
   return 0;
 }
