@@ -1,6 +1,5 @@
 #include "pipe_networking.h"
 
-
 int main() {
   printf("Running server (don't forget to run this and client in separate tabs)!\n");
   
